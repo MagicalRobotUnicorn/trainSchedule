@@ -1,10 +1,83 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        Hello World!
-        This is a commit!
-    </body>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/stylesheets/stylesheet.css">
+</head>
+
+<body>
+    <div class="container">
+        <img src="./assets/images/unicornRailways.PNG">
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        Train Schedule
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Train Name</th>
+                                    <th scope="col">Desination</th>
+                                    <th scope="col">Frequency (min)</th>
+                                    <th scope="col">Next Arrival</th>
+                                    <th scope="col">Minutes Away</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-header">
+                    Add Train
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">Train Name</label>
+                            <input type="text" class="form-control" id="trainName"
+                                placeholder="Example input">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Destination</label>
+                            <input type="text" class="form-control" id="destination"
+                                placeholder="Destination">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput">First Train Time (HHmm)</label>
+                            <input type="text" class="form-control" id="formGroupExampleInput"
+                                placeholder="First Train in Military Time">
+                        </div>
+                        <div class="form-group">
+                            <label for="formGroupExampleInput2">Frequency (min)</label>
+                            <input type="text" class="form-control" id="frequency"
+                                placeholder="Frequency (min)">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-database.js"></script>
+    <script src="./assets/javascript/programLogic.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#config-web-app -->
+
+
+</body>
+
 </html>

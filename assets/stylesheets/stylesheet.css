@@ -1,0 +1,23 @@
+body {
+    background: #712424;
+}
+
+.container {
+    width: 50%;
+}
+
+.card-header {
+    background: brown;
+    color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border: 1px solid white;
+    padding: 10px;
+}
+.card-body {
+    background: white;
+    border: 1px solid white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin-bottom: 30px;
+}
