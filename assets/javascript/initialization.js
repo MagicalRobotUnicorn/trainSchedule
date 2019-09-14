@@ -1,33 +1,33 @@
 // Scripts that created trains
 
-function createTrain(name, destination, firstTrain, frequency){
-    var train = {}
-    train.name = name;
-    train.destination = destination;
-    train.firstTrain = firstTrain;
-    train.frequency = frequency;
+// function createTrain(name, destination, firstTrain, frequency){
+//     var train = {}
+//     train.name = name;
+//     train.destination = destination;
+//     train.firstTrain = firstTrain;
+//     train.frequency = frequency;
 
-    return train;
-}
+//     return train;
+// }
 
-var trains = [];
+// var trains = [];
 
-trains.push(createTrain("Banshee Express", "Candy Castle", 0700, 15));
+// trains.push(createTrain("Banshee Express", "Candy Castle", 0700, 15));
 
-trains.push(createTrain("Trans-Centaur", "Cupcake Commons", 0730, 20));
-trains.push(createTrain("Griffin Pacific", "Gingerbread Plum Trees", 0800, 30));
-trains.push(createTrain("Great Eastern Hydra", "Gumdrop Mountains", 0830, 40));
-trains.push(createTrain("Midland Phoenix", "Licorice Castle", 0900, 15));
-trains.push(createTrain("Wendigo Branch Line", "Lollipop Woods", 0930, 20));
-trains.push(createTrain("Werewolf Coast Line", "Licorice Forest", 1000, 30));
-trains.push(createTrain("Isle of Pixie Line", "Cupcake Commons", 1030, 45));
-trains.push(createTrain("Trans-Siberian Unicorn", "Lollipop Palace", 1100, 60));
+// trains.push(createTrain("Trans-Centaur", "Cupcake Commons", 0730, 20));
+// trains.push(createTrain("Griffin Pacific", "Gingerbread Plum Trees", 0800, 30));
+// trains.push(createTrain("Great Eastern Hydra", "Gumdrop Mountains", 0830, 40));
+// trains.push(createTrain("Midland Phoenix", "Licorice Castle", 0900, 15));
+// trains.push(createTrain("Wendigo Branch Line", "Lollipop Woods", 0930, 20));
+// trains.push(createTrain("Werewolf Coast Line", "Licorice Forest", 1000, 30));
+// trains.push(createTrain("Isle of Pixie Line", "Cupcake Commons", 1030, 45));
+// trains.push(createTrain("Trans-Siberian Unicorn", "Lollipop Palace", 1100, 60));
 
-console.log(trains)
+// console.log(trains)
 
 
 // Scripts that used trains to seed database on Firebase
-var trains = [ { name: 'Banshee Express',
+trains = [ { name: 'Banshee Express',
     destination: 'Candy Castle',
     firstTrain: 448,
     frequency: 15 },
@@ -64,8 +64,5 @@ var trains = [ { name: 'Banshee Express',
     firstTrain: 1100,
     frequency: 60 } ];
 
-for (var i = 0; i < trains.length; i++){
-    var object = trains[i];
-    db.ref().push(object);
-    console.log(object);
-}
+
+db.ref().push(trains);
