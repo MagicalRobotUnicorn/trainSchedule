@@ -3,25 +3,30 @@ const db = firebase.firestore();
 const $trainList = $('#trainList');
 const $addTrain = $('#addTrain')
 
-db.collection('trains').get().then((snapshot) => {
-    snapshot.docs.forEach((doc) => {
+// real-time listener
+// db.collection('trains').get().then((snapshot) => {
+db.collection('trains').orderBy('name').onSnapshot((snapshot) => {
+ 
+    changes = snapshot.docChanges;
+
+    changes.forEach(change => {
 
         var $newRow = $('<tr>');
-        var $trainName = $('<td>').append(doc.data().name);
-        var $destination = $('<td>').append(doc.data().destination);
-        var $frequency = $('<td>').append(doc.data().frequency);
+        var $trainName = $('<td>').append(change.doc.data().name);
+        var $destination = $('<td>').append(change.doc.data().destination);
+        var $frequency = $('<td>').append(change.doc.data().frequency);
 
         // Moment time stamp now
         var currentTime = moment().format("HHmm");
 
         // Moment time stamp at first train
-        var firstTrain = moment(doc.data().firstTrain, "HHmm");
+        var firstTrain = moment(change.doc.data().firstTrain, "HHmm");
 
         var nextTrain = firstTrain;
 
         // Function that adds interval until is it larger than now
         while (nextTrain.format("HHmm") < currentTime) {
-            nextTrain.add(doc.data().frequency, 'm');
+            nextTrain.add(change.doc.data().frequency, 'm');
 
             if (nextTrain.format("HH") == 00) {
                 nextTrain = "----";
