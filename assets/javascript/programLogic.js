@@ -1,6 +1,7 @@
 // Connecting the firebase with this config
 const db = firebase.firestore();
 const $trainList = $('#trainList');
+const $addTrain = $('#addTrain')
 
 // trains = [ { name: 'Banshee Express',
 //  a   destination: 'Candy Castle',
@@ -88,8 +89,6 @@ db.collection('trains').get().then((snapshot) => {
         var $nextTrain = $('<td>').append(displayNextTrain);
         var $minUntil = $('<td>').append(parseInt(minUntil));
 
-
-
         // Individual cells
         $newRow.append($trainName);
         $newRow.append($destination);
@@ -102,7 +101,15 @@ db.collection('trains').get().then((snapshot) => {
 
     })
 });
-// db.ref().on("child_added", function(snapshot){
 
-
-// });
+$('#addTrainSubmit').on('click', function(event) {
+    event.preventDefault();
+    db.collection('trains').add(
+        {
+            name: $('#trainName').val(),
+            destination: $('#destination').val(),
+            firstTrain: $('#firstTrain').val(),
+            frequency: $('#frequency').val()
+        }
+    );
+});
