@@ -1,19 +1,6 @@
-// Your web app's Firebase configuration
-var firebaseConfig = {
-    apiKey: "AIzaSyCSzsy9BqSHSvhixvpjLvoWR3mRPUVTMUM",
-    authDomain: "trainschedule-4f07a.firebaseapp.com",
-    databaseURL: "https://trainschedule-4f07a.firebaseio.com",
-    projectId: "trainschedule-4f07a",
-    storageBucket: "trainschedule-4f07a.appspot.com",
-    messagingSenderId: "454593065166",
-    appId: "1:454593065166:web:6e47329e851309d8ad609f"
-};
-
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
 // Connecting the firebase with this config
-var db = firebase.database();
+const db = firebase.firestore();
+const $trainList = $('#trainList');
 
 // trains = [ { name: 'Banshee Express',
 //  a   destination: 'Candy Castle',
@@ -55,7 +42,48 @@ var db = firebase.database();
 
 // db.ref().push(trains);
 
-db.ref().on("child_added", function(snapshot){
+db.collection('trains').get().then((snapshot) =>{
+    snapshot.docs.forEach((doc) => {
+        console.log(doc.data());
+        var $newRow = $('<tr>');
+        var $trainName = $('<td>').append(doc.data().name);
+        var $destination = $('<td>').append(doc.data().destination);
+        var $frequency = $('<td>').append(doc.data().frequency);
+        var $firstTrain = $('<td>').append(doc.data().firstTrain);
+
+        // Moment time stamp now
+        var currentTime = moment().format("HHmm");
+
+        // Moment time stamp at first train
+        var firstTrain = moment(doc.data().firstTrain, "HHmm");
+
+        var nextTrain = firstTrain;
+
+        // Function that adds interval until is it larger than now
+        while(nextTrain.format("HHmm") < currentTime) {
+            nextTrain.add(doc.data().frequency, 'm');
+        }
+
+        // Function that extrapolates how much time is left until the next train
+        var duration = moment.duration(nextTrain.diff(moment()));
+        console.log(duration);
+        var minUntil = duration.asMinutes();
+        console.log(minUntil);
+        
+        var displayNextTrain = nextTrain.format("HHmm");
+
+
+        $newRow.append($trainName);
+        $newRow.append($destination);
+        $newRow.append($frequency);
+        $newRow.append(displayNextTrain);
+        $newRow.append(minUntil);
+
+        $trainList.append($newRow);
+
+    })
+});
+// db.ref().on("child_added", function(snapshot){
     
 
-});
+// });
