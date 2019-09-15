@@ -27,7 +27,7 @@
                                     <th scope="col">Minutes Away</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="trainList">
 
                             </tbody>
                         </table>
@@ -41,7 +41,7 @@
                     Add Train
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form >
                         <div class="form-group">
                             <label for="formGroupExampleInput">Train Name</label>
                             <input type="text" class="form-control" id="trainName"
@@ -54,7 +54,7 @@
                         </div>
                         <div class="form-group">
                             <label for="formGroupExampleInput">First Train Time (HHmm)</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput"
+                            <input type="text" class="form-control" id="firstTrain"
                                 placeholder="First Train in Military Time">
                         </div>
                         <div class="form-group">
@@ -62,6 +62,7 @@
                             <input type="text" class="form-control" id="frequency"
                                 placeholder="Frequency (min)">
                         </div>
+                        <button type="submit" class="btn btn-primary" id="addTrainSubmit">Submit</button>
                     </form>
                 </div>
             </div>
@@ -70,14 +71,32 @@
     </div>
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-database.js"></script>
-    <script src="./assets/javascript/programLogic.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
         https://firebase.google.com/docs/web/setup#config-web-app -->
 
+        <script>
+                // Your web app's Firebase configuration
+                var firebaseConfig = {
+                  apiKey: "AIzaSyCSzsy9BqSHSvhixvpjLvoWR3mRPUVTMUM",
+                  authDomain: "trainschedule-4f07a.firebaseapp.com",
+                  databaseURL: "https://trainschedule-4f07a.firebaseio.com",
+                  projectId: "trainschedule-4f07a",
+                  storageBucket: "trainschedule-4f07a.appspot.com",
+                  messagingSenderId: "454593065166",
+                  appId: "1:454593065166:web:6e47329e851309d8ad609f"
+                };
+                // Initialize Firebase
+                firebase.initializeApp(firebaseConfig);
+        </script>
 
+        <script src="./assets/javascript/programLogic.js"></script>
 </body>
 
 </html>
